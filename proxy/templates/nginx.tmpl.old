@@ -1,20 +1,22 @@
 {{ define "upstream" }}
-        {{ if .Address }}
-                {{/* If we got the containers from swarm and this container's port is published to host, use host IP:PORT */}}
-                {{ if and .Container.Node.ID .Address.HostPort }}
-                        # {{ .Container.Node.Name }}/{{ .Container.Name }}
-                        server {{ .Container.Node.Address.IP }}:{{ .Address.HostPort }};
-                {{/* If there is no swarm node or the port is not published on host, use container's IP:PORT */}}
-                {{ else if .Network }}
-                        # {{ .Container.Name }}
-                        server {{ .Network.IP }}:{{ .Address.Port }};
-                {{ end }}
-        {{ else if .Network }}
-                # {{ .Container.Name }}
-                server {{ .Network.IP }} down;
+    {{ if .Address }}
+        {{/* If we got the containers from swarm and this container's port is published to host, use host IP:PORT */}}
+        {{ if and .Container.Node.ID .Address.HostPort }}
+            # {{ .Container.Node.Name }}/{{ .Container.Name }}
+            server {{ .Container.Node.Address.IP }}:{{ .Address.HostPort }};
+        {{/* If there is no swarm node or the port is not published on host, use container's IP:PORT */}}
+#        {{ else if .Address.IP }}
+#            # {{ .Container.Name }}
+#            server {{ .Address.IP }}:{{ .Address.Port }};
+        {{ else }}
+            # {{ .Container.Name }}
+            server {{ .Container.Name }}:{{ .Address.Port }};
         {{ end }}
+    {{ else }}
+        # {{ .Container.Name }}
+        server {{ .Container.IP }} down;
+    {{ end }}
 {{ end }}
-
 
 # If we receive X-Forwarded-Proto, pass it through; otherwise, pass along the
 # scheme used to connect to this server

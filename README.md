@@ -1,7 +1,11 @@
 Docker nginx proxy
 ==================
 
-Sources from https://github.com/fatk/docker-letsencrypt-nginx-proxy-companion-examples
+Sources from:
+
+- https://github.com/fatk/docker-letsencrypt-nginx-proxy-companion-examples
+- https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
+- https://github.com/jwilder/nginx-proxy
 
 Install
 -------

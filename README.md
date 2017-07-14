@@ -14,7 +14,7 @@ Clone this repository and run the following commands to add the required network
 
 ```
 docker network create -d bridge nginx-proxy
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 More informations

@@ -1,1 +1,3 @@
-proxy/certs/
+!/proxy/certs
+/proxy/certs/*
+!proxy/certs/.gitkeep

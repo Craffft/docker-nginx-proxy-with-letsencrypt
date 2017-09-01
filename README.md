@@ -17,6 +17,32 @@ docker network create -d bridge nginx-proxy
 docker-compose up -d --build
 ```
 
+Client Docker Compose config
+----------------------------
+
+```bash
+services:
+  nginx:
+
+    // ...
+
+    environment:
+      VIRTUAL_HOST: 'myhost.url'
+      VIRTUAL_NETWORK: nginx-proxy
+      VIRTUAL_PORT: '80'
+      LETSENCRYPT_HOST: 'myhost.url'
+      LETSENCRYPT_EMAIL: 'mail@myhost.url'
+    networks:
+      - proxy-tier
+      
+    // ...
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
+```
+
 More informations
 -----------------
 

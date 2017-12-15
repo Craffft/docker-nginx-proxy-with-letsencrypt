@@ -14,6 +14,7 @@ services:
       - "/usr/share/nginx/html"
       - "./proxy/certs:/etc/nginx/certs:ro"
       - "./proxy/vhost.d:/etc/nginx/vhost.d"
+      - "./proxy/conf.d:/etc/nginx/conf.d"
     networks:
       - proxy-tier
   nginx-gen:

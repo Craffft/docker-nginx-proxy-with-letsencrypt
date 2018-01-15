@@ -1,3 +1,4 @@
 !/proxy/certs
 /proxy/certs/*
 !proxy/certs/.gitkeep
+/proxy/conf.d/default.conf
